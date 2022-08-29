@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FruitApp</string>
+    <string name="action_settings">Settings</string>
+	<string name="fruit_id">Fruit Id</string>
+
+	<string name="name">Name</string>
+	<string name="origin">Origin</string>
+	<string name="largest_country">Largest Country</string>
+	<string name="product_in_billions">Product In Billions</string>
+	<string name="create_item">Create Item</string>
+	<string name="fruit_api_url">https://postmanmaster.herokuapp.com/fruit/</string>
+</resources>

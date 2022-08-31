@@ -43,11 +43,11 @@ namespace FruitApp.Adapater
             OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             FruitViewHolder vh = holder as FruitViewHolder;
-            vh.Id.Text = mFruit[position].Id;
-            vh.Name.Text = mFruit[position].Name;
-            vh.Origin.Text = mFruit[position].Origin;
-            vh.LargestCountry.Text = mFruit[position].LargestCountry;
-            vh.ProdutInBillions.Text = mFruit[position].ProductionInBillions.ToString();
+            vh.Id.Text = mFruit[position].id;
+            vh.Name.Text = mFruit[position].name;
+            vh.Origin.Text = mFruit[position].origin;
+            vh.LargestCountry.Text = mFruit[position].largestCountry;
+            vh.ProdutInBillions.Text = mFruit[position].productionInBillions.ToString();
 
             ((FruitViewHolder)holder).ItemView.Click -= ItemOnClick;
             ((FruitViewHolder)holder).ItemView.Click += ItemOnClick;
@@ -81,11 +81,11 @@ namespace FruitApp.Adapater
         {
             int position = this.mRecyclerView.GetChildAdapterPosition((View)sender);
             Fruit fruitClicked = this.mFruit[position];
-            string fruitId = fruitClicked.Id;
+            string fruitId = fruitClicked.id;
             Toast.MakeText(this.context, "This is fruit number " + fruitId, ToastLength.Long).Show();
 
             Intent intent = new Intent(this.context, typeof(DetailsFruitActivity));
-            intent.PutExtra("Id", fruitId);
+            intent.PutExtra("id", fruitId);
             this.context.StartActivity(intent);
         }
     }

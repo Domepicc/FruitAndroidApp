@@ -37,11 +37,17 @@ namespace FruitApp.Activity
 
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.activity_list_fruit);
+            SetContentView(Resource.Layout.activity_recycler_view_fruit);
 
             // set URL
             string url = Resources.GetString(Resource.String.fruit_api_url);
-            UrlSingleton.Create(url);
+            UrlSingleton.Create(url);          
+
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
 
             // FruitAPI
             FruitAPI api = new FruitAPI();
@@ -55,15 +61,6 @@ namespace FruitApp.Activity
             // set FruitAdapter
             mAdapter = new FruitAdapter(this, mFruits);
             mRecyclerView.SetAdapter(mAdapter);
-
-            //TextView text = FindViewById<TextView>(Resource.Id.fruit_id_text);
-          
-
-        }
-
-        protected override void OnStart()
-        {
-            base.OnStart();
 
 
         }

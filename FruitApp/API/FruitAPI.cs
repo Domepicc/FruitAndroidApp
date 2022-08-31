@@ -26,13 +26,19 @@ namespace FruitApp.API
 
         public Fruit Get<Fruit>( string id)
         {
-            return _url.AppendPathSegment(id).GetJsonAsync<Fruit>().Result;
+            return _url.AppendPathSegment(id).GetJsonAsync<Fruit>().Result; 
         }
 
 
         public bool Post<Fruit>( Fruit item)
         {
             var post = _url.PostJsonAsync(item).Result;
+            return true;
+        }
+
+        public bool Post<FruitForPost>(FruitForPost item, string id)
+        {
+            var post = _url.AppendPathSegment(id).PatchJsonAsync(item).Result;
             return true;
         }
 

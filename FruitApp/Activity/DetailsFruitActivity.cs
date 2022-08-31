@@ -12,7 +12,7 @@ using AndroidX.AppCompat.App;
 using FruitApp.Domain;
 using FruitApp.API;
 using Android.Content.Res;
-
+using System.Reflection;
 
 namespace FruitApp.Activity
 {
@@ -21,8 +21,14 @@ namespace FruitApp.Activity
     {
         private Fruit mFruit;
         bool isEditable = false;
+
+        TextView idTextView;
+        TextView nameTextView;
+        TextView orginTextView;
+        TextView largestCountryTextView;
+        TextView productInBillionsTextView;
+
         int[] resources = new int[] {
-                Resource.Id.fruit_id_edittext,
                 Resource.Id.name_edittext,
                 Resource.Id.origin_edittext,
                 Resource.Id.largest_country_edittext,
@@ -35,7 +41,11 @@ namespace FruitApp.Activity
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_details_fruit);
 
-            // Create your application here
+            // set URL
+            string url = Resources.GetString(Resource.String.fruit_api_url);
+            UrlSingleton.Create(url);
+            FindAllTextView();
+
         }
 
         protected override void OnStart()
@@ -44,12 +54,8 @@ namespace FruitApp.Activity
 
             // checks that the id is passed
             string id;
-            id = Intent.GetStringExtra("Id");
-                Toast.MakeText(this, "This is fruit number " + id, ToastLength.Long).Show();
-
-            // set URL
-            string url = Resources.GetString(Resource.String.fruit_api_url);
-            UrlSingleton.Create(url);
+            id = Intent.GetStringExtra("id");
+            Toast.MakeText(this, "This is fruit number " + id, ToastLength.Long).Show();
 
             // FruitAPI
             FruitAPI api = new FruitAPI();
@@ -58,63 +64,73 @@ namespace FruitApp.Activity
             EditEnable(false);
             SetElementOfDetailsFruit(mFruit);
 
-
             Button btn = FindViewById<Button>(Resource.Id.button);
             btn.Text = "EDIT";
             btn.Click += OnClic;
-
 
         }
 
         private void OnClic (object sender, EventArgs eventArgs)
         {
             Button btn = FindViewById<Button>(Resource.Id.button);
+            Fruit fruitForPost = new Fruit();
+
             if (isEditable)
             {
-                GetElementFromDetailsFruit();
-                Toast.MakeText(this, "ok", ToastLength.Long).Show();
+                fruitForPost = GetElementFromDetailsFruit();
+                FruitAPI api = new FruitAPI();
+                api.Post<Fruit>(fruitForPost, fruitForPost.id);
+                Toast.MakeText(this, $"edit: {fruitForPost.name}" , ToastLength.Long).Show();
                 btn.Text = "EDIT";
-                EditEnable(!isEditable);
-                isEditable = !isEditable;
-
             }
             else
             {
                 btn.Text = "SAVE";
-                EditEnable(!isEditable);
-                isEditable = !isEditable;
-
             }
 
+            EditEnable(!isEditable);
+            isEditable = !isEditable;
         }
 
         private void SetElementOfDetailsFruit(Fruit mFruit)
         {
-            FindViewById<TextView>(Resource.Id.fruit_id_edittext).Text = mFruit.Id;
-            FindViewById<TextView>(Resource.Id.name_edittext).Text = mFruit.Name;
-            FindViewById<TextView>(Resource.Id.origin_edittext).Text = mFruit.Origin;
-            FindViewById<TextView>(Resource.Id.largest_country_edittext).Text = mFruit.LargestCountry;
-            FindViewById<TextView>(Resource.Id.product_in_billions_edittext).Text = mFruit.ProductionInBillions.ToString();
+            idTextView.Text = mFruit.id;
+            nameTextView.Text = mFruit.name;
+            orginTextView.Text = mFruit.origin;
+            largestCountryTextView.Text = mFruit.largestCountry;
+            productInBillionsTextView.Text = mFruit.productionInBillions.ToString();
 
         }
 
-        private void GetElementFromDetailsFruit()
+        private void FindAllTextView()
         {
-            mFruit.Id = FindViewById<TextView>(Resource.Id.name_edittext).Text;
-            mFruit.Name = FindViewById<TextView>(Resource.Id.name_edittext).Text;
-            mFruit.Origin = FindViewById<TextView>(Resource.Id.origin_edittext).Text;
-            mFruit.LargestCountry = FindViewById<TextView>(Resource.Id.largest_country_edittext).Text;
-            mFruit.ProductionInBillions = decimal.Parse(FindViewById<TextView>(Resource.Id.product_in_billions_edittext).Text);
+            idTextView = FindViewById<TextView>(Resource.Id.fruit_id_edittext);
+            nameTextView = FindViewById<TextView>(Resource.Id.name_edittext);
+            orginTextView = FindViewById<TextView>(Resource.Id.origin_edittext);
+            largestCountryTextView = FindViewById<TextView>(Resource.Id.largest_country_edittext);
+            productInBillionsTextView = FindViewById<TextView>(Resource.Id.product_in_billions_edittext);
         }
 
-        private void EditEnable(bool b)
+        private Fruit GetElementFromDetailsFruit()
         {
-            TextView[] textViews = new TextView[resources.Length];
-            for (int i = 0; i < resources.Length; i++)
-            {
-                textViews[i] = FindViewById<TextView>(resources[i]);
-                textViews[i].Enabled = b;
-            }
+            Fruit fruitForPost = new Fruit();
+
+            fruitForPost.id = idTextView.Text;
+            fruitForPost.name = nameTextView.Text;
+            fruitForPost.origin = orginTextView.Text;
+            fruitForPost.largestCountry = largestCountryTextView.Text;
+            fruitForPost.productionInBillions = decimal.Parse(productInBillionsTextView.Text);
+            
+            return fruitForPost;
+        }
+
+        private void EditEnable(bool isEnable)
+        {
+            nameTextView.Enabled = isEnable;
+            orginTextView.Enabled = isEnable;
+            largestCountryTextView.Enabled = isEnable;
+            productInBillionsTextView.Enabled = isEnable;
+
         }
     }
 }

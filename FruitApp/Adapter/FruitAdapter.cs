@@ -8,72 +8,85 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AndroidApp.Domain;
+using FruitApp.Domain;
+using AndroidX.RecyclerView.Widget;
+using static AndroidX.RecyclerView.Widget.RecyclerView;
+using FruitApp.Activity;
 
-namespace AndroidApp.Adapater
+namespace FruitApp.Adapater
 {
-    internal class FruitAdapter : BaseAdapter
+    public class FruitAdapter : RecyclerView.Adapter
     {
-
+        List<Fruit> mFruit;
         Context context;
+        private RecyclerView mRecyclerView;
 
-        public FruitAdapter(Context context)
+
+        public FruitAdapter(Context context, List<Fruit> fruit)
         {
             this.context = context;
+            this.mRecyclerView = new RecyclerView(context);
+            mFruit = fruit;
+
         }
 
-
-        public override Java.Lang.Object GetItem(int position)
+        public override RecyclerView.ViewHolder
+            OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            return position;
+            View itemView = LayoutInflater.From(parent.Context).
+                        Inflate(Resource.Layout.item_fruit, parent, false);
+            FruitViewHolder vh = new FruitViewHolder(itemView);
+            return vh;
         }
 
-        public override long GetItemId(int position)
+        public override void
+            OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            return position;
+            FruitViewHolder vh = holder as FruitViewHolder;
+            vh.Id.Text = mFruit[position].Id;
+            vh.Name.Text = mFruit[position].Name;
+            vh.Origin.Text = mFruit[position].Origin;
+            vh.LargestCountry.Text = mFruit[position].LargestCountry;
+            vh.ProdutInBillions.Text = mFruit[position].ProductionInBillions.ToString();
+
+            ((FruitViewHolder)holder).ItemView.Click -= ItemOnClick;
+            ((FruitViewHolder)holder).ItemView.Click += ItemOnClick;
         }
 
-        public override View GetView(int position, View convertView, ViewGroup parent)
+        public override int ItemCount
         {
-            var view = convertView;
-            FruitAdapterViewHolder holder = null;
+            get { return mFruit.Count; }
+        }
 
-            if (view != null)
-                holder = view.Tag as FruitAdapterViewHolder;
+        public class FruitViewHolder : RecyclerView.ViewHolder
+        {
+            public TextView Id { get; private set; }
+            public TextView Name { get; private set; }
+            public TextView Origin { get; private set; }
+            public TextView LargestCountry { get; private set; }
+            public TextView ProdutInBillions { get; private set; }
 
-            if (holder == null)
+            public FruitViewHolder(View itemView) : base(itemView)
             {
-                holder = new FruitAdapterViewHolder();
-                var inflater = context.GetSystemService(Context.LayoutInflaterService).JavaCast<LayoutInflater>();
-                //replace with your item and your holder items
-                //comment back in
-
-                //view = inflater.Inflate(Resource.Layout.item, parent, false);
-                //holder.Title = view.FindViewById<TextView>(Resource.Id.text);
-                //view.Tag = holder;
+                // Locate and cache view references:
+                Id = itemView.FindViewById<TextView>(Resource.Id.fruit_id_text);
+                Name = itemView.FindViewById<TextView>(Resource.Id.name_text);
+                Origin = itemView.FindViewById<TextView>(Resource.Id.origin_text);
+                LargestCountry = itemView.FindViewById<TextView>(Resource.Id.largest_country_text);
+                ProdutInBillions = itemView.FindViewById<TextView>(Resource.Id.product_in_billions_text);
             }
-
-
-            //fill in your items
-            //holder.Title.Text = "new text here";
-
-            return view;
         }
 
-        //Fill in cound here, currently 0
-        public override int Count
+        private void ItemOnClick(object sender, EventArgs e)
         {
-            get
-            {
-                return 0;
-            }
+            int position = this.mRecyclerView.GetChildAdapterPosition((View)sender);
+            Fruit fruitClicked = this.mFruit[position];
+            string fruitId = fruitClicked.Id;
+            Toast.MakeText(this.context, "This is fruit number " + fruitId, ToastLength.Long).Show();
+
+            Intent intent = new Intent(this.context, typeof(DetailsFruitActivity));
+            intent.PutExtra("Id", fruitId);
+            this.context.StartActivity(intent);
         }
-
-    }
-
-    internal class FruitAdapterViewHolder : Java.Lang.Object
-    {
-        //Your adapter views to re-use
-        //public TextView Title { get; set; }
     }
 }

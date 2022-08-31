@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity\DetailsFruitActivity.cs" />
-    <Compile Include="Activity\EditFruitActivity.cs" />
     <Compile Include="Activity\ListFruitActivity.cs" />
     <Compile Include="Adapter\FruitAdapter.cs" />
     <Compile Include="API\FruitAPI.cs" />
@@ -112,6 +111,9 @@
     <PackageReference Include="Flurl.Http">
       <Version>3.2.4</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
     <PackageReference Include="System.Net.Http">
       <Version>4.3.4</Version>
     </PackageReference>
@@ -130,9 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_details_fruit.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_edit_fruit.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

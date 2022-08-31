@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+﻿<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recyclerview_item"
@@ -18,15 +17,15 @@
 		style="@style/textViewCreate"/>
 	<TextView
 		android:text="@string/origin"
-		android:id="@+id/origin_textview"
+		android:id="@+id/origin_text"
 		style="@style/textViewCreate"/>
 	<TextView
 		android:text="@string/largest_country"
-		android:id="@+id/largest_country_textview"
+		android:id="@+id/largest_country_text"
 		style="@style/textViewCreate"/>
 	<TextView
 		android:text="@string/product_in_billions"
-		android:id="@+id/product_in_billions_textview"
+		android:id="@+id/product_in_billions_text"
 		style="@style/textViewCreate"/>
 
 </LinearLayout>

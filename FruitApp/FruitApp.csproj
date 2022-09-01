@@ -63,7 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity\DetailsFruitActivity.cs" />
+    <Compile Include="Activity\GridLayoutTesActivityt.cs" />
     <Compile Include="Activity\ListFruitActivity.cs" />
+    <Compile Include="Activity\TestGridActivity.cs" />
+    <Compile Include="Activity\TestListActivity.cs" />
+    <Compile Include="Adapter\AdapterGenerator.cs" />
+    <Compile Include="Adapter\TestGridAdapter.cs" />
+    <Compile Include="Adapter\TestGridLayoutAdapter.cs" />
+    <Compile Include="Adapter\TestListAdapter.cs" />
     <Compile Include="Adapter\FruitAdapter.cs" />
     <Compile Include="API\FruitAPI.cs" />
     <Compile Include="API\UrlSingleton.cs" />
@@ -134,12 +141,28 @@
     <AndroidResource Include="Resources\layout\activity_details_fruit.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_list_fruit.xml">
+    <AndroidResource Include="Resources\layout\item_attribute_fruit.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_grid_fruit.xml">
+    <AndroidResource Include="Resources\layout\activity_test_list.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_test_grid.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_test_grid_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\text_view.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

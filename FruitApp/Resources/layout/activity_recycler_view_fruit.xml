@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+        <include layout="@layout/item_attribute_fruit" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_fruit_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"/>
+            android:layout_height="match_parent"/>
 
 
 

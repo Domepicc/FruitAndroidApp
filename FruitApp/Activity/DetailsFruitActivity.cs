@@ -41,6 +41,7 @@ namespace FruitApp.Activity
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_details_fruit);
 
+
             // set URL
             string url = Resources.GetString(Resource.String.fruit_api_url);
             UrlSingleton.Create(url);

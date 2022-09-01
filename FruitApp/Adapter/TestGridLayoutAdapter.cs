@@ -15,14 +15,14 @@ using FruitApp.Activity;
 
 namespace FruitApp.Adapater
 {
-    public class FruitAdapter : RecyclerView.Adapter
+    public class TestGridLayoutAdapter : RecyclerView.Adapter
     {
         List<Fruit> mFruits;
         Context context;
         private RecyclerView mRecyclerView;
 
 
-        public FruitAdapter(Context context, List<Fruit> fruit)
+        public TestGridLayoutAdapter(Context context, List<Fruit> fruit)
         {
             this.context = context;
             this.mRecyclerView = new RecyclerView(context);
@@ -34,23 +34,20 @@ namespace FruitApp.Adapater
             OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             View itemView = LayoutInflater.From(parent.Context).
-                        Inflate(Resource.Layout.item_fruit, parent, false);
-            FruitViewHolder vh = new FruitViewHolder(itemView);
+                        Inflate(Resource.Layout.text_view, parent, false);
+            TestGridLayoutHolder vh = new TestGridLayoutHolder(itemView);
             return vh;
         }
 
         public override void
             OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            FruitViewHolder vh = holder as FruitViewHolder;
-            vh.Id.Text = mFruits[position].id;
+            TestGridLayoutHolder vh = holder as TestGridLayoutHolder;
             vh.Name.Text = mFruits[position].name;
-            vh.Origin.Text = mFruits[position].origin;
-            vh.LargestCountry.Text = mFruits[position].largestCountry;
-            vh.ProdutInBillions.Text = mFruits[position].productionInBillions.ToString();
 
-            ((FruitViewHolder)holder).ItemView.Click -= ItemOnClick;
-            ((FruitViewHolder)holder).ItemView.Click += ItemOnClick;
+
+            ((TestGridLayoutHolder)holder).ItemView.Click -= ItemOnClick;
+            ((TestGridLayoutHolder)holder).ItemView.Click += ItemOnClick;
         }
 
         public override int ItemCount
@@ -58,22 +55,16 @@ namespace FruitApp.Adapater
             get { return mFruits.Count; }
         }
 
-        public class FruitViewHolder : RecyclerView.ViewHolder
+        public class TestGridLayoutHolder : RecyclerView.ViewHolder
         {
-            public TextView Id { get; private set; }
             public TextView Name { get; private set; }
-            public TextView Origin { get; private set; }
-            public TextView LargestCountry { get; private set; }
-            public TextView ProdutInBillions { get; private set; }
 
-            public FruitViewHolder(View itemView) : base(itemView)
+
+            public TestGridLayoutHolder(View itemView) : base(itemView)
             {
                 // Locate and cache view references:
-                Id = itemView.FindViewById<TextView>(Resource.Id.fruit_id_text);
-                Name = itemView.FindViewById<TextView>(Resource.Id.name_text);
-                Origin = itemView.FindViewById<TextView>(Resource.Id.origin_text);
-                LargestCountry = itemView.FindViewById<TextView>(Resource.Id.largest_country_text);
-                ProdutInBillions = itemView.FindViewById<TextView>(Resource.Id.product_in_billions_text);
+                Name = itemView.FindViewById<TextView>(Resource.Id.textViewForGrid);
+     
             }
         }
 

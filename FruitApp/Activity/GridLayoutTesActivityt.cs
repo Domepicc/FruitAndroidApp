@@ -2,46 +2,43 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
+using AndroidX.AppCompat.App;
+using AndroidX.RecyclerView.Widget;
+using FruitApp.Adapater;
+using FruitApp.Adapter;
+using FruitApp.API;
+using FruitApp.Domain;
+using Java.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AndroidX.AppCompat.App;
-using FruitApp.API;
-using FruitApp.Domain;
-using Google.Android.Material.FloatingActionButton;
-using Google.Android.Material.Snackbar;
-using static Android.Telephony.CarrierConfigManager;
-using AndroidX.RecyclerView.Widget;
+using static Android.Views.ViewGroup;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
-using FruitApp.Adapater;
-using Android.Text;
-using Java.Lang;
 
 namespace FruitApp.Activity
 {
-
-    [Activity(Label = "List Fruit" )]
-    public class ListFruitActivity : AppCompatActivity
+    [Activity(Label = "GridLayoutTest", MainLauncher = true)]
+    public class GridLayoutTesActivityt : AppCompatActivity
     {
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
-        private FruitAdapter mAdapter;
+        private TestGridLayoutAdapter mAdapter;
         private List<Fruit> mFruits;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            mFruits = new List<Fruit>();
-
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.activity_recycler_view_fruit);
+            SetContentView(Resource.Layout.activity_test_grid_layout);
+
 
             // set LinearLayoutManager
-            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.list_fruit_recyclerview);
-            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.grid_fruit_recyclerview);
+            //mLayoutManager = new LinearLayoutManager(this);
+            mLayoutManager = new GridLayoutManager(this.ApplicationContext, 3);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
             // set URL
@@ -59,11 +56,9 @@ namespace FruitApp.Activity
             mFruits = api.Get<Fruit>();
 
             // set FruitAdapter
-            mAdapter = new FruitAdapter(this, mFruits);
+            mAdapter = new TestGridLayoutAdapter(this, mFruits);
             mRecyclerView.SetAdapter(mAdapter);
 
         }
-
     }
-
 }

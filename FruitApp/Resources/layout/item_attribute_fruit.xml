@@ -1,7 +1,7 @@
 ﻿<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recyclerview_item"
+    android:id="@+id/item_attribute_fruit"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,22 +10,23 @@
 	<TextView
 		android:text="@string/fruit_id"
 		android:id="@+id/fruit_id_text"
-		style="@style/textViewList"/>
+		style="@style/textViewCreate"/>
 	<TextView
 		android:text="@string/name"
 		android:id="@+id/name_text"
-		style="@style/textViewList"/>
+		style="@style/textViewCreate"/>
 	<TextView
 		android:text="@string/origin"
 		android:id="@+id/origin_text"
-		style="@style/textViewList"/>
+		style="@style/textViewCreate"/>
 	<TextView
 		android:text="@string/largest_country"
 		android:id="@+id/largest_country_text"
-		style="@style/textViewList"/>
+		style="@style/textViewCreate"/>
 	<TextView
 		android:text="@string/product_in_billions"
 		android:id="@+id/product_in_billions_text"
-		style="@style/textViewList"/>
+		style="@style/textViewCreate"/>
+
 
 </LinearLayout>

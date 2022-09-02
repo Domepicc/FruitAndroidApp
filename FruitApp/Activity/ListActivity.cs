@@ -21,7 +21,7 @@ namespace FruitApp.Activity
     [Activity(Label = "List")]
     public class ListActivity : AppCompatActivity
     {
-        private Adapter.ListAdapter mAdapter;
+        private Adapter.FruitAdapter mAdapter;
         private List<Fruit> mFruits;
         private ListView mListView;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -45,7 +45,7 @@ namespace FruitApp.Activity
             mFruits = api.Get<Fruit>();
 
             // set FruitAdapter
-            mAdapter = new Adapter.ListAdapter(this, mFruits);
+            mAdapter = new FruitAdapter(mFruits);
             mListView.Adapter = mAdapter;
 
             mListView.ItemClick += ItemOnClick;

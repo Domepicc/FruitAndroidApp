@@ -13,7 +13,7 @@ namespace FruitApp.Activity
     [Activity(Label = "Grid")]
     public class GridActivity : AppCompatActivity
     {
-        private ListAdapter mAdapter;
+        private FruitAdapter mAdapter;
         private List<Fruit> mFruits;
         private GridView mGridView;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -37,7 +37,7 @@ namespace FruitApp.Activity
             mFruits = api.Get<Fruit>();
 
             // set FruitAdapter
-            mAdapter = new ListAdapter(this, mFruits);
+            mAdapter = new FruitAdapter(mFruits);
             mGridView.Adapter = mAdapter;
 
             mGridView.ItemClick += ItemOnClick;

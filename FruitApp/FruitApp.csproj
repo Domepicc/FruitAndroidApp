@@ -66,10 +66,9 @@
     <Compile Include="Activity\GridLayoutActivity.cs" />
     <Compile Include="Activity\RecyclerActivity.cs" />
     <Compile Include="Activity\GridActivity.cs" />
-    <Compile Include="Activity\ListActivity.cs" />
-    <Compile Include="Adapter\GridAdapter.cs" />
+    <Compile Include="Adapter\FruitAdapter.cs" />
     <Compile Include="Adapter\GridLayoutAdapter.cs" />
-    <Compile Include="Adapter\ListAdapter.cs" />
+    <Compile Include="Activity\ListActivity.cs" />
     <Compile Include="Adapter\RecyclerAdapter.cs" />
     <Compile Include="API\FruitAPI.cs" />
     <Compile Include="API\UrlSingleton.cs" />
@@ -163,7 +162,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\apple.jpg" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\apple.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text;
 using FruitApp.Domain;
 using AndroidX.RecyclerView.Widget;
-using static AndroidX.RecyclerView.Widget.RecyclerView;
 using FruitApp.Activity;
 
 namespace FruitApp.Adapater

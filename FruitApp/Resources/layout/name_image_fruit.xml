@@ -26,7 +26,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:contentDescription="Apple"
-            android:src="@mipmap/apple" />
+            android:src="@drawable/apple" />
 
 
 

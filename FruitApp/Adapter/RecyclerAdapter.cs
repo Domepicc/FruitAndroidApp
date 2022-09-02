@@ -15,14 +15,14 @@ using FruitApp.Activity;
 
 namespace FruitApp.Adapater
 {
-    public class FruitAdapter : RecyclerView.Adapter
+    public class RecyclerAdapter : RecyclerView.Adapter
     {
         List<Fruit> mFruits;
         Context context;
         private RecyclerView mRecyclerView;
 
 
-        public FruitAdapter(Context context, List<Fruit> fruit)
+        public RecyclerAdapter(Context context, List<Fruit> fruit)
         {
             this.context = context;
             this.mRecyclerView = new RecyclerView(context);
@@ -35,22 +35,22 @@ namespace FruitApp.Adapater
         {
             View itemView = LayoutInflater.From(parent.Context).
                         Inflate(Resource.Layout.item_fruit, parent, false);
-            FruitViewHolder vh = new FruitViewHolder(itemView);
+            RecyclerViewHolder vh = new RecyclerViewHolder(itemView);
             return vh;
         }
 
         public override void
             OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            FruitViewHolder vh = holder as FruitViewHolder;
+            RecyclerViewHolder vh = holder as RecyclerViewHolder;
             vh.Id.Text = mFruits[position].id;
             vh.Name.Text = mFruits[position].name;
             vh.Origin.Text = mFruits[position].origin;
             vh.LargestCountry.Text = mFruits[position].largestCountry;
             vh.ProdutInBillions.Text = mFruits[position].productionInBillions.ToString();
 
-            ((FruitViewHolder)holder).ItemView.Click -= ItemOnClick;
-            ((FruitViewHolder)holder).ItemView.Click += ItemOnClick;
+            ((RecyclerViewHolder)holder).ItemView.Click -= ItemOnClick;
+            ((RecyclerViewHolder)holder).ItemView.Click += ItemOnClick;
         }
 
         public override int ItemCount
@@ -58,7 +58,7 @@ namespace FruitApp.Adapater
             get { return mFruits.Count; }
         }
 
-        public class FruitViewHolder : RecyclerView.ViewHolder
+        public class RecyclerViewHolder : RecyclerView.ViewHolder
         {
             public TextView Id { get; private set; }
             public TextView Name { get; private set; }
@@ -66,7 +66,7 @@ namespace FruitApp.Adapater
             public TextView LargestCountry { get; private set; }
             public TextView ProdutInBillions { get; private set; }
 
-            public FruitViewHolder(View itemView) : base(itemView)
+            public RecyclerViewHolder(View itemView) : base(itemView)
             {
                 // Locate and cache view references:
                 Id = itemView.FindViewById<TextView>(Resource.Id.fruit_id_text);

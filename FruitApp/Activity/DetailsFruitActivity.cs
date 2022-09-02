@@ -21,6 +21,8 @@ namespace FruitApp.Activity
     {
         private Fruit mFruit;
         bool isEditable = false;
+        private string EDIT;
+        private string SAVE;
 
         TextView idTextView;
         TextView nameTextView;
@@ -28,19 +30,14 @@ namespace FruitApp.Activity
         TextView largestCountryTextView;
         TextView productInBillionsTextView;
 
-        int[] resources = new int[] {
-                Resource.Id.name_edittext,
-                Resource.Id.origin_edittext,
-                Resource.Id.largest_country_edittext,
-                Resource.Id.product_in_billions_edittext
-            };
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_details_fruit);
 
+            EDIT = Resources.GetString(Resource.String.edit);
+            SAVE = Resources.GetString(Resource.String.save);
 
             // set URL
             string url = Resources.GetString(Resource.String.fruit_api_url);
@@ -66,7 +63,7 @@ namespace FruitApp.Activity
             SetElementOfDetailsFruit(mFruit);
 
             Button btn = FindViewById<Button>(Resource.Id.button);
-            btn.Text = "EDIT";
+            btn.Text = EDIT;
             btn.Click += OnClic;
 
         }
@@ -74,23 +71,24 @@ namespace FruitApp.Activity
         private void OnClic (object sender, EventArgs eventArgs)
         {
             Button btn = FindViewById<Button>(Resource.Id.button);
-            Fruit fruitForPost = new Fruit();
+            Fruit mFruitForPost = new Fruit();
 
             if (isEditable)
             {
-                fruitForPost = GetElementFromDetailsFruit();
+                mFruitForPost = GetElementFromDetailsFruit();
                 FruitAPI api = new FruitAPI();
-                api.Post<Fruit>(fruitForPost, fruitForPost.id);
-                Toast.MakeText(this, $"edit: {fruitForPost.name}" , ToastLength.Long).Show();
-                btn.Text = "EDIT";
+                api.Post<Fruit>(mFruitForPost, mFruitForPost.id);
+                Toast.MakeText(this, $"edit: {mFruitForPost.name}" , ToastLength.Long).Show();
+                btn.Text = EDIT;
             }
             else
             {
-                btn.Text = "SAVE";
+                btn.Text = SAVE;
             }
-
-            EditEnable(!isEditable);
+            // Changing details fruit between edit mode and save mode
             isEditable = !isEditable;
+            EditEnable(isEditable);
+
         }
 
         private void SetElementOfDetailsFruit(Fruit mFruit)

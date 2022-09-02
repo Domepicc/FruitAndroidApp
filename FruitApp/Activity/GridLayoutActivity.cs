@@ -21,18 +21,18 @@ using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace FruitApp.Activity
 {
-    [Activity(Label = "GridLayoutTest", MainLauncher = true)]
-    public class GridLayoutTesActivityt : AppCompatActivity
+    [Activity(Label = "GridLayout", MainLauncher = true)]
+    public class GridLayoutActivity : AppCompatActivity
     {
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
-        private TestGridLayoutAdapter mAdapter;
+        private GridLayoutAdapter mAdapter;
         private List<Fruit> mFruits;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.activity_test_grid_layout);
+            SetContentView(Resource.Layout.activity_grid_layout);
 
 
             // set LinearLayoutManager
@@ -56,7 +56,7 @@ namespace FruitApp.Activity
             mFruits = api.Get<Fruit>();
 
             // set FruitAdapter
-            mAdapter = new TestGridLayoutAdapter(this, mFruits);
+            mAdapter = new GridLayoutAdapter(this, mFruits);
             mRecyclerView.SetAdapter(mAdapter);
 
         }

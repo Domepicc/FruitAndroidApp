@@ -15,14 +15,14 @@ using FruitApp.Activity;
 
 namespace FruitApp.Adapater
 {
-    public class TestGridLayoutAdapter : RecyclerView.Adapter
+    public class GridLayoutAdapter : RecyclerView.Adapter
     {
         List<Fruit> mFruits;
         Context context;
         private RecyclerView mRecyclerView;
 
 
-        public TestGridLayoutAdapter(Context context, List<Fruit> fruit)
+        public GridLayoutAdapter(Context context, List<Fruit> fruit)
         {
             this.context = context;
             this.mRecyclerView = new RecyclerView(context);
@@ -34,20 +34,20 @@ namespace FruitApp.Adapater
             OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             View itemView = LayoutInflater.From(parent.Context).
-                        Inflate(Resource.Layout.text_view, parent, false);
-            TestGridLayoutHolder vh = new TestGridLayoutHolder(itemView);
+                        Inflate(Resource.Layout.name_image_fruit, parent, false);
+            GridLayoutHolder vh = new GridLayoutHolder(itemView);
             return vh;
         }
 
         public override void
             OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            TestGridLayoutHolder vh = holder as TestGridLayoutHolder;
+            GridLayoutHolder vh = holder as GridLayoutHolder;
             vh.Name.Text = mFruits[position].name;
 
 
-            ((TestGridLayoutHolder)holder).ItemView.Click -= ItemOnClick;
-            ((TestGridLayoutHolder)holder).ItemView.Click += ItemOnClick;
+            ((GridLayoutHolder)holder).ItemView.Click -= ItemOnClick;
+            ((GridLayoutHolder)holder).ItemView.Click += ItemOnClick;
         }
 
         public override int ItemCount
@@ -55,12 +55,12 @@ namespace FruitApp.Adapater
             get { return mFruits.Count; }
         }
 
-        public class TestGridLayoutHolder : RecyclerView.ViewHolder
+        public class GridLayoutHolder : RecyclerView.ViewHolder
         {
             public TextView Name { get; private set; }
 
 
-            public TestGridLayoutHolder(View itemView) : base(itemView)
+            public GridLayoutHolder(View itemView) : base(itemView)
             {
                 // Locate and cache view references:
                 Name = itemView.FindViewById<TextView>(Resource.Id.textViewForGrid);

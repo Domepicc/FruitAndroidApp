@@ -11,17 +11,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
-using static FruitApp.Adapater.FruitAdapter;
+using static FruitApp.Adapater.RecyclerAdapter;
 
 namespace FruitApp.Adapter
 {
-    internal class TestGridAdapter : BaseAdapter
+    internal class GridAdapter : BaseAdapter
     {
         private Context context;
         private List<Fruit> mFruits;
         private ListView mListView;
 
-        public TestGridAdapter(Context context, List<Fruit> fruits)
+        public GridAdapter(Context context, List<Fruit> fruits)
         {
             this.context = context;
             this.mListView = new ListView(context);
@@ -42,7 +42,7 @@ namespace FruitApp.Adapter
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var view = convertView;
-            TestGridViewHolder holder = null;
+            GridViewHolder holder = null;
 
 
                 
@@ -50,7 +50,7 @@ namespace FruitApp.Adapter
             //replace with your item and your holder items
             //comment back in
             view = inflater.Inflate(Resource.Layout.item_fruit, parent, false);
-            holder = new TestGridViewHolder(view);
+            holder = new GridViewHolder(view);
             
 
             holder.Id.Text = mFruits[position].id;
@@ -78,7 +78,7 @@ namespace FruitApp.Adapter
 
     }
 
-    internal class TestGridViewHolder
+    internal class GridViewHolder
     {
             public TextView Id { get; private set; }
             public TextView Name { get; private set; }
@@ -87,7 +87,7 @@ namespace FruitApp.Adapter
             public TextView ProdutInBillions { get; private set; }
 
 
-            public TestGridViewHolder(View itemView)
+            public GridViewHolder(View itemView)
             {
                 // Locate and cache view references:
                 Id = itemView.FindViewById<TextView>(Resource.Id.fruit_id_text);

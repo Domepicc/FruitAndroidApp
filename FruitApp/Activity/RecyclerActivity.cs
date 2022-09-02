@@ -23,12 +23,12 @@ using Java.Lang;
 namespace FruitApp.Activity
 {
 
-    [Activity(Label = "List Fruit" )]
-    public class ListFruitActivity : AppCompatActivity
+    [Activity(Label = "Recycler")]
+    public class RecyclerActivity : AppCompatActivity
     {
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
-        private FruitAdapter mAdapter;
+        private RecyclerAdapter mAdapter;
         private List<Fruit> mFruits;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -37,10 +37,10 @@ namespace FruitApp.Activity
 
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.activity_recycler_view_fruit);
+            SetContentView(Resource.Layout.activity_recycler);
 
             // set LinearLayoutManager
-            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.list_fruit_recyclerview);
+            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerview);
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
@@ -59,7 +59,7 @@ namespace FruitApp.Activity
             mFruits = api.Get<Fruit>();
 
             // set FruitAdapter
-            mAdapter = new FruitAdapter(this, mFruits);
+            mAdapter = new RecyclerAdapter(this, mFruits);
             mRecyclerView.SetAdapter(mAdapter);
 
         }

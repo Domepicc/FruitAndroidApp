@@ -1,27 +1,35 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
+using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using AndroidX.RecyclerView.Widget;
+using FruitApp.Adapater;
 using FruitApp.Adapter;
 using FruitApp.API;
 using FruitApp.Domain;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace FruitApp.Activity
 {
-    [Activity(Label = "TestGridActivity")]
-    public class TestActivity : AppCompatActivity
+    [Activity(Label = "List")]
+    public class ListActivity : AppCompatActivity
     {
-        private TestListAdapter mAdapter;
+        private Adapter.ListAdapter mAdapter;
         private List<Fruit> mFruits;
-        private GridView mGridView;
+        private ListView mListView;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.activity_test_grid);
+            SetContentView(Resource.Layout.activity_list);
 
-            mGridView = FindViewById<GridView>(Resource.Id.gridTestView);
+            mListView = FindViewById<ListView>(Resource.Id.listView);
 
             // set URL
             string url = Resources.GetString(Resource.String.fruit_api_url);
@@ -37,10 +45,10 @@ namespace FruitApp.Activity
             mFruits = api.Get<Fruit>();
 
             // set FruitAdapter
-            mAdapter = new TestListAdapter(this, mFruits);
-            mGridView.Adapter = mAdapter;
+            mAdapter = new Adapter.ListAdapter(this, mFruits);
+            mListView.Adapter = mAdapter;
 
-            mGridView.ItemClick += ItemOnClick;
+            mListView.ItemClick += ItemOnClick;
 
         }
 

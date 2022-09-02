@@ -8,6 +8,8 @@
 	<string name="largest_country">Largest Country</string>
 	<string name="product_in_billions">Product In Billions</string>
 	<string name="create_item">Create Item</string>
+	<string name="save">Save</string>
+	<string name="edit">Edit</string>
 	<string name="fruit_api_url">https://postmanmaster.herokuapp.com/fruit/</string>
 
 </resources>

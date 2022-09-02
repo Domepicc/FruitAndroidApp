@@ -1,10 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+﻿<GridLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="@dimen/padding"
+app:layout_behavior="@string/appbar_scrolling_view_behavior"
+android:rowCount="6"
+android:columnCount="3">
 
-     <include layout="@layout/details_fruit" />
+    <TextView
+        android:text="@string/fruit_id"
+        android:id="@+id/fruit_id_textview"
+        style="@style/textViewCreate"
+        android:layout_row="0"
+        android:layout_column="0"/>
+    <TextView
+        android:text="@string/name"
+        android:id="@+id/name_textview"
+        style="@style/textViewCreate"
+        android:layout_row="1"
+        android:layout_column="0"/>
+    <TextView
+        android:text="@string/origin"
+        android:id="@+id/origin_textview"
+        style="@style/textViewCreate"
+        android:layout_row="2"
+        android:layout_column="0"/>
+    <TextView
+        android:text="@string/largest_country"
+        android:id="@+id/largest_country_textview"
+        style="@style/textViewCreate"
+        android:layout_row="3"
+        android:layout_column="0"/>
+    <TextView
+        android:text="@string/product_in_billions"
+        android:id="@+id/product_in_billions_textview"
+        style="@style/textViewCreate"
+        android:layout_row="4"
+        android:layout_column="0"/>
+
+    <EditText
+        android:id="@+id/fruit_id_edittext"
+        style="@style/editTextCreate"
+        android:inputType="text"
+        android:enabled="false"
+        android:layout_row="0"
+        android:layout_column="1"/>
+    <EditText
+        android:id="@+id/name_edittext"
+        style="@style/editTextCreate"
+        android:inputType="text"
+        android:layout_row="1"
+        android:layout_column="1"/>
+    <EditText
+        android:id="@+id/origin_edittext"
+        style="@style/editTextCreate"
+        android:inputType="text"
+        android:layout_row="2"
+        android:layout_column="1"/>
+    <EditText
+        android:id="@+id/largest_country_edittext"
+        style="@style/editTextCreate"
+        android:inputType="text"
+        android:layout_row="3"
+        android:layout_column="1"/>
+
+    <EditText
+        android:id="@+id/product_in_billions_edittext"
+        style="@style/editTextCreate"
+        android:inputType="numberSigned"
+        android:layout_row="4"
+        android:layout_column="1"/>
+
+    <Button
+        android:text="@string/create_item"
+        android:id="@+id/button"
+        style="@style/button"
+        android:layout_row="5"
+        android:layout_column="1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
 
 
-</LinearLayout>
+</GridLayout>
+
+
